@@ -1,0 +1,27 @@
+<!-- index.html -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <title>研究室限定</title>
+</head>
+<body>
+  <h2>ログイン</h2>
+  <p>研究室限定</p>
+  <input id="pw" type="password" placeholder="パスワード">
+  <button id="btn">開く</button>
+
+  <script>
+    document.getElementById('btn').onclick = async () => {
+      const pw = document.getElementById('pw').value;
+      const correct = atob("c2FzYWppbWE=c3R1IQ==");
+      if (pw === correct) {
+        window.location.href = '893kj2u6_public_events.html';
+      } else {
+        alert('違います');
+      }
+    };
+  </script>
+</body>
+</html>

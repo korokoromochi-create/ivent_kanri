@@ -6,172 +6,168 @@
   <title>イベント一覧</title>
   <style>
     body {
-  font-family: "Segoe UI", sans-serif;
-  background-color: #f7ffef;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  width: 90%;
-  margin: 30px auto;
-  background: #fff;
-  padding: 20px 40px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-h1, h2 {
-  text-align: center;
-}
-
-.btn {
-  background-color: #007bff;
-  color: white;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  margin: 5px;
-  display: inline-block;
-}
-
-.btn:hover { background-color: #0056b3; }
-.btn.back { 
-  margin-top: 10px;
-  background-color: #6c757d; }
-
-input, textarea, select {
-  width: 100%;
-  margin: 5px 0 15px 0;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-}
-
-th, td {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: center;
-}
-
-th {
-  background-color: #f2f2f2;
-  cursor: pointer;
-}
-
-.past {
-  background-color: #eee;
-  color: #666;
-}
-
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f7ffef;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 90%;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    h2 { text-align: center; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    th { background-color: #f2f2f2; cursor: pointer; }
+    .past { background-color: #eee; color: #666; }
+    .generated-time { text-align: center; margin-bottom: 20px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>今後のイベント</h2>
-    <table>
-      <thead>
-        <tr>
-          <th onclick="sortTable(0)">日時 ⬍</th>
-          <th>イベント名</th>
-          <th>提出物</th>
-          <th onclick="sortTable(3)">提出期限 ⬍</th>
-          <th>提出物名</th>
-          <th>場所</th>
-          <th>対象者</th>
-          <th>備考</th>
-        </tr>
-      </thead>
-      <tbody id="eventTable">
-        
-        <tr>
-          <td>2025-12-01 00:00</td>
-          <td>人工知能学会合同研究会</td>
-          <td>あり</td>
-          <td>2025-11-25 23:59</td>
-          <td>論文原稿</td>
-          <td>慶応義塾大学日吉キャンパス</td>
-          <td></td>
-          <td>12/1～3</td>
-        </tr>
-        
-        <tr>
-          <td>2026-01-28 14:00</td>
-          <td>2026年度人工知能学会申し込み締め切り</td>
-          <td>あり</td>
-          <td>2026-01-28 14:00</td>
-          <td>発表申込、アブストラクト</td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        
-        <tr>
-          <td>2026-02-18 14:00</td>
-          <td>2026人工知能学会原稿締め切り</td>
-          <td>あり</td>
-          <td>2026-02-18 14:00</td>
-          <td>論文原稿</td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        
-      </tbody>
-    </table>
+<div class="container">
+  <h2>今後のイベント</h2>
+  <table>
+    <thead>
+      <tr>
+        <th onclick="sortTable('upcoming',0)">日時 ⬍</th>
+        <th>イベント名</th>
+        <th>提出物</th>
+        <th onclick="sortTable('upcoming',3)">提出期限 ⬍</th>
+        <th>提出物名</th>
+        <th>場所</th>
+        <th>対象者</th>
+        <th>備考</th>
+      </tr>
+    </thead>
+    <tbody id="upcomingTable"></tbody>
+  </table>
 
-    <h2>過去のイベント</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>日時</th><th>イベント名</th><th>提出物</th><th>提出期限</th><th>提出物名</th><th>場所</th><th>対象者</th><th>備考</th>
-        </tr>
-      </thead>
-      <tbody>
-        
-        <tr class="past">
-          <td>2025-10-31 10:00</td>
-          <td>中間発表</td>
-          <td>あり</td>
-          <td>2025-10-22 00:00</td>
-          <td>スライド</td>
-          <td>K201</td>
-          <td>M1</td>
-          <td></td>
-        </tr>
-        
-      </tbody>
-    </table>
-  </div>
-  <div class="generated-time">🕒 最終更新：2025-11-01 22:24</div>
+  <h2>過去のイベント</h2>
+  <table>
+    <thead>
+      <tr>
+        <th onclick="sortTable('past',0)">日時</th>
+        <th>イベント名</th>
+        <th>提出物</th>
+        <th>提出期限</th>
+        <th>提出物名</th>
+        <th>場所</th>
+        <th>対象者</th>
+        <th>備考</th>
+      </tr>
+    </thead>
+    <tbody id="pastTable"></tbody>
+  </table>
+</div>
+
+<div class="generated-time" id="genTime"></div>
+
+<!-- 🔽 ここに JSON を埋め込む -->
+<script id="events-data" type="application/json">
+[
+  {
+    "id": 1760777740,
+    "datetime": "2025-10-31T10:00",
+    "name": "中間発表",
+    "has_submission": true,
+    "submission_name": "スライド",
+    "submission_deadline": "2025-10-22T00:00",
+    "place": "K201",
+    "target": "M1",
+    "note": ""
+  },
+  {
+    "id": 1760777786,
+    "datetime": "2025-12-01T00:00",
+    "name": "人工知能学会合同研究会",
+    "has_submission": true,
+    "submission_name": "論文原稿",
+    "submission_deadline": "2025-11-25T23:59",
+    "place": "慶応義塾大学日吉キャンパス",
+    "target": "",
+    "note": "12/1～3"
+  },
+  {
+    "id": 1761999693,
+    "datetime": "2026-01-28T14:00",
+    "name": "2026年度人工知能学会申し込み締め切り",
+    "has_submission": true,
+    "submission_name": "発表申込、アブストラクト",
+    "submission_deadline": "2026-01-28T14:00",
+    "place": "",
+    "target": "",
+    "note": ""
+  },
+  {
+    "id": 1761999778,
+    "datetime": "2026-02-18T14:00",
+    "name": "2026人工知能学会原稿締め切り",
+    "has_submission": true,
+    "submission_name": "論文原稿",
+    "submission_deadline": "2026-02-18T14:00",
+    "place": "",
+    "target": "",
+    "note": ""
+  }
+]
+</script>
 
 <script>
+// ---- JSON読み込み ----
 document.addEventListener("DOMContentLoaded", () => {
-  const yes = document.getElementById("subYes");
-  const no = document.getElementById("subNo");
-  const fields = document.getElementById("submissionFields");
-  if (yes && no && fields) {
-    const toggle = () => fields.style.display = yes.checked ? "block" : "none";
-    yes.addEventListener("change", toggle);
-    no.addEventListener("change", toggle);
-  }
+
+  const events = JSON.parse(
+    document.getElementById("events-data").textContent
+  );
+
+  const now = new Date().toISOString();
+
+  const upcoming = events
+    .filter(e => e.datetime >= now)
+    .sort((a,b) => a.datetime.localeCompare(b.datetime));
+
+  const past = events
+    .filter(e => e.datetime < now)
+    .sort((a,b) => b.datetime.localeCompare(a.datetime));
+
+  const upT = document.getElementById("upcomingTable");
+  const pastT = document.getElementById("pastTable");
+
+  const makeRow = (e, isPast = false) => `
+    <tr class="${isPast ? 'past' : ''}">
+      <td>${e.datetime.replace("T"," ")}</td>
+      <td>${e.name}</td>
+      <td>${e.has_submission ? "あり" : "なし"}</td>
+      <td>${e.submission_deadline.replace("T"," ")}</td>
+      <td>${e.submission_name}</td>
+      <td>${e.place}</td>
+      <td>${e.target}</td>
+      <td>${e.note}</td>
+    </tr>
+  `;
+
+  upcoming.forEach(e => upT.insertAdjacentHTML("beforeend", makeRow(e)));
+  past.forEach(e => pastT.insertAdjacentHTML("beforeend", makeRow(e, true)));
+
+  document.getElementById("genTime").innerText =
+    "🕒 最終更新：" + new Date().toLocaleString("ja-JP", { hour12:false });
 });
 
-function sortTable(colIndex) {
-  const table = document.getElementById("eventTable");
+// ---- ソート ----
+function sortTable(type, colIndex) {
+  const table = document.getElementById(type + "Table");
   const rows = Array.from(table.rows);
-  const sorted = rows.sort((a, b) => {
-    const valA = a.cells[colIndex].innerText;
-    const valB = b.cells[colIndex].innerText;
-    return valA.localeCompare(valB);
-  });
+  const sorted = rows.sort((a, b) =>
+    a.cells[colIndex].innerText.localeCompare(b.cells[colIndex].innerText)
+  );
   sorted.forEach(r => table.appendChild(r));
 }
 </script>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <title>イベント一覧</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f7ffef;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 90%;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    h2 { text-align: center; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    th { background-color: #f2f2f2; cursor: pointer; }
+    .past { background-color: #eee; color: #666; }
+    .generated-time { text-align: center; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>今後のイベント</h2>
+  <table>
+    <thead>
+      <tr>
+        <th onclick="sortTable('upcoming',0)">日時 ⬍</th>
+        <th>イベント名</th>
+        <th>提出物</th>
+        <th onclick="sortTable('upcoming',3)">提出期限 ⬍</th>
+        <th>提出物名</th>
+        <th>場所</th>
+        <th>対象者</th>
+        <th>備考</th>
+      </tr>
+    </thead>
+    <tbody id="upcomingTable"></tbody>
+  </table>
+
+  <h2>過去のイベント</h2>
+  <table>
+    <thead>
+      <tr>
+        <th onclick="sortTable('past',0)">日時</th>
+        <th>イベント名</th>
+        <th>提出物</th>
+        <th>提出期限</th>
+        <th>提出物名</th>
+        <th>場所</th>
+        <th>対象者</th>
+        <th>備考</th>
+      </tr>
+    </thead>
+    <tbody id="pastTable"></tbody>
+  </table>
+</div>
+
+<div class="generated-time" id="genTime"></div>
+
+<script>
+// ---------- JSON読み込み（GitHub Pages で動作） ----------
+fetch("events.json")
+  .then(response => response.json())
+  .then(events => {
+    const now = new Date().toISOString();
+
+    const upcoming = events
+      .filter(e => e.datetime >= now)
+      .sort((a,b) => a.datetime.localeCompare(b.datetime));
+
+    const past = events
+      .filter(e => e.datetime < now)
+      .sort((a,b) => b.datetime.localeCompare(a.datetime));
+
+    const upT = document.getElementById("upcomingTable");
+    const pastT = document.getElementById("pastTable");
+
+    const makeRow = (e, isPast = false) => `
+      <tr class="${isPast ? 'past' : ''}">
+        <td>${e.datetime.replace("T"," ")}</td>
+        <td>${e.name}</td>
+        <td>${e.has_submission ? "あり" : "なし"}</td>
+        <td>${e.submission_deadline.replace("T"," ")}</td>
+        <td>${e.submission_name}</td>
+        <td>${e.place}</td>
+        <td>${e.target}</td>
+        <td>${e.note}</td>
+      </tr>
+    `;
+
+    upcoming.forEach(e => upT.insertAdjacentHTML("beforeend", makeRow(e)));
+    past.forEach(e => pastT.insertAdjacentHTML("beforeend", makeRow(e, true)));
+
+    document.getElementById("genTime").innerText =
+      "🕒 最終更新：" + new Date().toLocaleString("ja-JP", { hour12:false });
+  })
+  .catch(err => {
+    document.getElementById("genTime").innerText = "JSON読み込みエラー：" + err;
+  });
+
+// ---------- ソート機能 ----------
+function sortTable(type, colIndex) {
+  const table = document.getElementById(type + "Table");
+  const rows = Array.from(table.rows);
+  const sorted = rows.sort((a, b) =>
+    a.cells[colIndex].innerText.localeCompare(b.cells[colIndex].innerText)
+  );
+  sorted.forEach(r => table.appendChild(r));
+}
+</script>
+
+</body>
+</html>

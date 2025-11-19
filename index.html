@@ -69,7 +69,6 @@
   </table>
 </div>
 
-<!--<div class="generated-time" id="genTime"></div>-->
 
 <script>
 // ---------- JSON読み込み（GitHub Pages で動作） ----------
@@ -105,8 +104,6 @@ fetch("events.json")
     upcoming.forEach(e => upT.insertAdjacentHTML("beforeend", makeRow(e)));
     past.forEach(e => pastT.insertAdjacentHTML("beforeend", makeRow(e, true)));
 
-    document.getElementById("genTime").innerText =
-      "🕒 最終更新：" + new Date().toLocaleString("ja-JP", { hour12:false });
   })
   .catch(err => {
     document.getElementById("genTime").innerText = "JSON読み込みエラー：" + err;
@@ -125,4 +122,5 @@ function sortTable(type, colIndex) {
 
 </body>
 </html>
+
 

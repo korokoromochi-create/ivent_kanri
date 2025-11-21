@@ -53,5 +53,16 @@
     "place": "ブラジリア―ノ",
     "target": "",
     "note": "シュラスコ食べ放題＋飲み放題→6100円"
+  },
+  {
+    "id": 1763700571,
+    "datetime": "2026-01-23T13:00",
+    "name": "卒論提出締め切り",
+    "has_submission": true,
+    "submission_name": "卒業論文",
+    "submission_deadline": "2026-01-23T13:00",
+    "place": "",
+    "target": "B4",
+    "note": ""
   }
 ]

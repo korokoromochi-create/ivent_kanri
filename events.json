@@ -64,5 +64,16 @@
     "place": "",
     "target": "B4",
     "note": ""
+  },
+  {
+    "id": 1765512316,
+    "datetime": "2026-01-16T23:59",
+    "name": "修士論文第1回",
+    "has_submission": true,
+    "submission_name": "修論",
+    "submission_deadline": "2026-01-16T23:59",
+    "place": "",
+    "target": "M2",
+    "note": "1月の第三金曜日"
   }
 ]

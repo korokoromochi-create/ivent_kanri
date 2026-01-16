@@ -75,5 +75,16 @@
     "place": "",
     "target": "M2",
     "note": "1月の第三金曜日（後に延長）"
+  },
+  {
+    "id": 1768534071,
+    "datetime": "2026-02-19T00:00",
+    "name": "修論発表会",
+    "has_submission": false,
+    "submission_name": "",
+    "submission_deadline": "",
+    "place": "情報科学キャンパス",
+    "target": "M2",
+    "note": "2/19-20\r\n発表20分質疑10分"
   }
 ]

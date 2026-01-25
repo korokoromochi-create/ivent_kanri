@@ -86,5 +86,16 @@
     "place": "情報科学キャンパス",
     "target": "M2",
     "note": "2/19-20\r\n発表20分質疑10分"
+  },
+  {
+    "id": 1769348026,
+    "datetime": "2026-02-03T15:15",
+    "name": "卒論発表会",
+    "has_submission": false,
+    "submission_name": "",
+    "submission_deadline": "",
+    "place": "",
+    "target": "B4",
+    "note": "2/3-4"
   }
 ]

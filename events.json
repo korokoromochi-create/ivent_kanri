@@ -97,5 +97,16 @@
     "place": "",
     "target": "B4",
     "note": "2/3-4"
+  },
+  {
+    "id": 1770621115,
+    "datetime": "2026-03-10T18:30",
+    "name": "追い出し会",
+    "has_submission": false,
+    "submission_name": "",
+    "submission_deadline": "",
+    "place": "鶏のとりこ 三宮店",
+    "target": "",
+    "note": ""
   }
 ]
